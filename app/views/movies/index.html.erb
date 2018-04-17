@@ -1,6 +1,14 @@
-<h1>All Movies</h1>
+<h1>
+  All Movies
+  <% if @director %>
+  by <%= @director.name %>
+  <% end %>
+</h1>
 
 <% @movies.each do |movie| %>
-  <%= movie.title %>
-  <%= movie.description %>
+  <div class="movie-<%= movie.id %>">
+    <%= link_to movie.title, movie_path(movie) %>
+    <%= movie.description %>
+    <%= button_to "Add Movie", cart_path(movie_id: movie.id)%>
+  </div>
 <% end %>
